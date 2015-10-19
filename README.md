@@ -26,7 +26,7 @@ print_r($interval->getInterval());
 
 $interval = new OzdemirBurak\Sancus\Intervals\WilsonInterval(75, 25, 0.90);
 print_r($interval->getInterval());
-echo $interval->score();
+echo $interval->score(); // $interval->getLowerBound()
 ```
 
 ## Change log
