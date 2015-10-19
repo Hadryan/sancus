@@ -19,14 +19,16 @@ $ composer require ozdemirburak/sancus
 
 ``` php
 $interval = new OzdemirBurak\Sancus\Intervals\AgrestiCoullInterval($positive = 25, $negative = 25, $confidence = 0.95);
-print_r($interval->getInterval());
+print_r($interval->getInterval()); // Array([0] => 0.36644514398812, [1] => 0.63355485601188)
+echo $interval->getLowerBound(); // prints 0.36644514398812
 
 $interval = new OzdemirBurak\Sancus\Intervals\WaldInterval(10, 50);
-print_r($interval->getInterval());
+print_r($interval->getInterval()); // Array([0] => 0.072367856116984, [1] => 0.26096547721635)
+echo $interval->getUpperBound(); // prints 0.26096547721635
 
 $interval = new OzdemirBurak\Sancus\Intervals\WilsonInterval(75, 25, 0.90);
-print_r($interval->getInterval());
-echo $interval->score(); // $interval->getLowerBound()
+print_r($interval->getInterval()); // Array([0] => 0.67282656258608, [1] => 0.81400207671582)
+echo $interval->score(); // WilsonInterval only, same as $interval->getLowerBound(), prints 0.67282656258608
 ```
 
 ## Change log
