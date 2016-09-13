@@ -6,6 +6,7 @@ use OzdemirBurak\Sancus\Interval;
 
 /**
  * Agresti-Coull (adjusted Wald) interval
+ *
  * @link http://www.stat.ufl.edu/~aa/articles/agresti_coull_1998.pdf
  */
 class AgrestiCoullInterval extends Interval

@@ -28,7 +28,7 @@ echo $interval->getUpperBound(); // prints 0.26096547721635
 
 $interval = new OzdemirBurak\Sancus\Intervals\WilsonInterval(75, 25, 0.90);
 print_r($interval->getInterval()); // Array([0] => 0.67282656258608, [1] => 0.81400207671582)
-echo $interval->score(); // WilsonInterval only, same as $interval->getLowerBound(), prints 0.67282656258608
+echo $interval->getScore(); // WilsonInterval only, same as $interval->getLowerBound(), prints 0.67282656258608
 ```
 
 ## Change log
