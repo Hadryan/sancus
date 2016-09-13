@@ -6,6 +6,7 @@ use OzdemirBurak\Sancus\Interval;
 
 /**
  * Wald (Asymptotic) method based on a normal approximation
+ *
  * @link https://projecteuclid.org/download/pdf_1/euclid.aoms/1177732209
  */
 class WaldInterval extends Interval

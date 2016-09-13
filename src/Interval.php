@@ -4,46 +4,54 @@ namespace OzdemirBurak\Sancus;
 
 /**
  * Binomial proportion confidence intervals
- * @author Burak Özdemir <mail@burakozdemir.co.uk>
- * @link http://burakozdemir.co.uk
- * @link https://github.com/ozdemirburak
+ *
  * @link https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval
+ *
+ * @author Burak Özdemir <mail@burakozdemir.co.uk>
+ * @link https://burakozdemir.co.uk
+ * @link https://github.com/ozdemirburak
  */
 abstract class Interval
 {
     /**
      * Count of positive results
-     * @var
+     *
+     * @var int
      */
     protected $positive;
 
     /**
      * Count of negative results
-     * @var
+     *
+     * @var int
      */
     protected $negative;
 
     /**
      * Level of confidence
-     * @var
+     *
+     * @var float
      */
     protected $confidence;
 
     /**
      * Count of total results
-     * @var
+     *
+     * @var int
      */
     protected $n;
 
     /**
      * Positive results out of total results
-     * @var
+     *
+     * @var int
      */
     protected $p;
 
     /**
      * Quantile of the standard normal distribution
-     * @var
+     *
+     * @var float
      */
     protected $z;
 
@@ -58,7 +66,7 @@ abstract class Interval
         $this->negative = intval($negative);
         $this->confidence = floatval($confidence);
         $this->n = $this->positive + $this->negative;
-        $this->z = $this->pnorm(1 - (1 - $this->confidence) / 2);
+        $this->z = $this->pNorm(1 - (1 - $this->confidence) / 2);
         $this->p = $this->n > 0 ? 1.0 * $this->positive / $this->n : null;
     }
 
@@ -77,15 +85,18 @@ abstract class Interval
      */
     public function getInterval()
     {
-        return array(0 => $this->getLowerBound(), 1 => $this->getUpperBound());
+        return array($this->getLowerBound(), $this->getUpperBound());
     }
 
     /**
-     * @link https://github.com/abscondment/statistics2/blob/master/lib/statistics2/base.rb#L89
      * @param $qn
+     *
+     * @link https://en.wikipedia.org/wiki/Norm_(mathematics)#p-norm
+     * @link https://github.com/abscondment/statistics2/blob/master/lib/statistics2/base.rb#L89
+     *
      * @return float
      */
-    protected function pnorm($qn)
+    protected function pNorm($qn)
     {
         $b = array(
             1.570796288, 0.03706987906, -0.8364353589e-3, -0.2250947176e-3,
@@ -98,7 +109,7 @@ abstract class Interval
         }
 
         $w1 = $qn > 0.5 ? 1.0 - $qn : $qn;
-        $w3 = - log(4.0 * $w1 * (1.0 - $w1));
+        $w3 = -log(4.0 * $w1 * (1.0 - $w1));
         $w1 = $b[0];
 
         for ($i = 1; $i <= 10; $i++) {

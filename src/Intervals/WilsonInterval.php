@@ -6,6 +6,7 @@ use OzdemirBurak\Sancus\Interval;
 
 /**
  * Wilson Score interval
+ *
  * @link http://www.med.mcgill.ca/epidemiology/hanley/tmp/proportion/wilson_jasa_1927.pdf
  * @link http://www.evanmiller.org/how-not-to-sort-by-average-rating.html
  * @link http://www.redditblog.com/2009/10/reddits-new-comment-sorting-system.html
@@ -31,7 +32,7 @@ class WilsonInterval extends Interval
     /**
      * @return float|int
      */
-    public function score()
+    public function getScore()
     {
         return $this->getLowerBound();
     }
