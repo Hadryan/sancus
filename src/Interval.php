@@ -2,6 +2,8 @@
 
 namespace OzdemirBurak\Sancus;
 
+use OzdemirBurak\Sancus\Contracts\Boundable;
+
 /**
  * Binomial proportion confidence intervals
  *
@@ -11,7 +13,7 @@ namespace OzdemirBurak\Sancus;
  * @link https://burakozdemir.co.uk
  * @link https://github.com/ozdemirburak
  */
-abstract class Interval
+abstract class Interval implements Boundable
 {
     /**
      * Count of positive results
@@ -69,16 +71,6 @@ abstract class Interval
         $this->z = $this->pNorm(1 - (1 - $this->confidence) / 2);
         $this->p = $this->n > 0 ? 1.0 * $this->positive / $this->n : null;
     }
-
-    /**
-     * @return float|int
-     */
-    abstract public function getUpperBound();
-
-    /**
-     * @return float|int
-     */
-    abstract public function getLowerBound();
 
     /**
      * @return array
